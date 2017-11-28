@@ -1,0 +1,178 @@
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+/* CSS Normalize */
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display:block;}audio,canvas,video{display:inline-block;}audio:not([controls]){display:none;height:0;}[hidden]{display:none;}html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}a:focus{outline:thin dotted;}a:active,a:hover{outline:0;}h1{font-size:2em;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:700;}dfn{font-style:italic;}mark{background:#ff0;color:#000;}code,kbd,pre,samp{font-family:monospace, serif;font-size:1em;}pre{white-space:pre-wrap;word-wrap:break-word;}q{quotes:\201C \201D \2018 \2019;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-.5em;}sub{bottom:-.25em;}img{border:0;}svg:not(:root){overflow:hidden;}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em;}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0;}button,input{line-height:normal;}button,html input[type=button],/* 1 */
+input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}button[disabled],input[disabled]{cursor:default;}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0;}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none;}textarea{overflow:auto;vertical-align:top;}table{border-collapse:collapse;border-spacing:0;}body,figure{margin:0;}legend,button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
+
+h1{    
+    font-family: 'Lato', sans-serif;    
+    text-align: center;   
+    margin-bottom: 30px;  
+    font-size: 45px;    
+}
+
+h2{
+    text-align: center; 
+}
+
+.section{
+    margin-bottom: 5%;
+}
+
+.slick-slide {
+    text-align: center;
+    color: #419be0;
+    background: white;
+    border: 1px solid black;
+}
+
+img{
+    width: 175px;    
+    height: 175px;
+    display:block;
+    margin:auto;    
+}
+
+strong{
+    font-size: 14px;
+    // position: absolute;
+    // bottom: 0;
+    // right: 0;
+}
+
+.title-holder{
+    height: 80px;
+    position: relative;
+}
+
+hr{    
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.wrap {
+    height: 80px;        
+    display: flex;
+    margin-bottom: 5px;
+    text-align: center;
+}
+  
+.wrap a  {
+    display: inline-block;
+    // margin: 10px 10px 0 0;
+    align-self: flex-end;
+    width: 260px;
+}
+
+.left-arrow{
+    position:absolute; 
+    top:50%; 
+    margin-left: 50%;
+}
+
+.left-arrow2{
+    position:absolute; 
+    top:50%; 
+    margin-left: 77%;
+}
+
+.right-arrow{
+    position:absolute; 
+    top:50%; 
+    margin-right: 50%;
+}
+
+.glyphicon {
+    font-size: 35px;
+}
+
+
+/*
+ * Row with equal height columns
+ * --------------------------------------------------
+ */
+ .row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+  }
+
+  hr.style18 { 
+    margin-bottom: 0px;
+    height: 30px; 
+    width: 1000px;    
+    border-style: solid; 
+    // border-color: #8c8b8b; 
+    border-color: black;
+    border-width: 1px 0 0 0; 
+    border-radius: 80px; 
+  } 
+  hr.style18:before { 
+    display: block; 
+    content: ""; 
+    height: 30px; 
+    margin-top: -31px; 
+    border-style: solid; 
+    border-color: #8c8b8b; 
+    border-width: 0 0 1px 0; 
+    border-radius: 80px; 
+  }
+
+  .a-container{
+    text-align: center;
+  }
+
+  .breaker{
+    height: 20px;
+  }
+
+  .breaker:last-child{
+      height: 50px;
+  }
+
+a.nostyle:link {
+    text-decoration: inherit;
+    color: inherit;    
+}
+
+a.nostyle:visited {
+    text-decoration: inherit;
+    color: inherit;    
+}
+
+.box{    
+    // border: 1px solid black;
+    margin: 0 10px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    // border:10px solid red;
+}
+
+.holder{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 250px;
+    height: 300px;
+    // border: 1px solid blue;
+    text-align:center;
+}
+
+.title-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    // height: 70px;
+    // width: 225px;
+}
+
+.glyph-holder{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;        
+}
