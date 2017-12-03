@@ -1,41 +1,25 @@
 import React from 'react';
 import Modal from 'react-modal';
+import LoginForm from './LoginForm'
 
-const LoginModal = React.createClass({
-    render() {
-        const { openModal, afterOpenModal, closeModal, modalIsOpen, login } = this.props;
-        return (
-            <div>
-                <Modal
-                    isOpen={modalIsOpen}
-                    onAfterOpen={afterOpenModal}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    {/* <form action="/login" method="post"> */}
-                        Username<input name="userName" label="Username" />
-                        <br/>
-                        Password<input name="password" label="Password" />
-                        <button onClick={()=>{ login()
-                            // fetch(`/login`,{
-                            //     method: `POST`,
-                            //     headers: {
-                            //         'Accept': 'application/json',
-                            //         'Content-Type': 'application/json'
-                            //       },
-                            //     body: JSON.stringify({
-                            //         userName:`kitters`,
-                            //         password:`password`
-                            //     })
-                            // })
-                        }}>Send my greetings</button>
-                    {/* </form> */}
-                </Modal>
-            </div>
-        );
-    }
-});
+const LoginModal = props => {
+    console.log(`props:`,props)
+    const { openModal, afterOpenModal, closeModal, modalIsOpen, login } = props;
+    const submit = values => login(values);
+    return (
+        <div>
+            <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <LoginForm onSubmit={submit} />
+            </Modal>
+        </div>
+    );
+};
 
 const customStyles = {
     content: {

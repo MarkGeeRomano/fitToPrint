@@ -1,13 +1,13 @@
 {
-  "version": "1.0.0", 
+  "version": "1.0.0",
   "scripts": {
     "build:webpack": "NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "test": "NODE_ENV=production mocha './tests/**/*.spec.js' --compilers js:babel-core/register",
     "clean": "rimraf dist",
-    "start": "nodemon server/index.js"    
-  }, 
-  "license": "MIT",  
+    "start": "nodemon server/index.js"
+  },
+  "license": "MIT",
   "dependencies": {
     "babel-eslint": "^6.0.4",
     "babel-plugin-react-transform": "^2.0.2",
@@ -40,6 +40,7 @@
     "react-transform-hmr": "^1.0.4",
     "redbox-react": "^1.2.3",
     "redux": "^3.5.2",
+    "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0",
     "request": "^2.83.0",
     "rimraf": "^2.5.2",

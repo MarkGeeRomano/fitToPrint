@@ -11,8 +11,8 @@ export function fetchData() {
     };
 };
 
-export function login() {
-    return dispatch => {
+export function login({userName, password}) {
+    return dispatch => {        
         fetch(`/login`, {
             method: `POST`,
             headers: {
@@ -20,8 +20,8 @@ export function login() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                userName: `kitters`,
-                password: `password`
+                userName,
+                password
             })
         })
             .then(blob => blob.json())
