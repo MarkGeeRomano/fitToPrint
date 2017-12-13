@@ -10,13 +10,13 @@ newsController.getNews = async (req, res, next) => {
     const axiosRequest = await request(`https://newsapi.org/v2/top-headlines?sources=axios&apiKey=e8a2cd3b777944f18f841e6ff53d59e3`);
     const nytRequest = await request(`https://newsapi.org/v2/top-headlines?sources=the-new-york-times&apiKey=e8a2cd3b777944f18f841e6ff53d59e3`);
     const espnRequest = await request(`https://newsapi.org/v2/top-headlines?sources=espn&apiKey=e8a2cd3b777944f18f841e6ff53d59e3`);
-    const hackerNewsRequest = await request(`https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`);
+    const hnRequest = await request(`https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty`);
 
     const bloomStories = JSON.parse(bloomRequest.body).articles;
     const axiosStories = JSON.parse(axiosRequest.body).articles;
     const nytStories = JSON.parse(nytRequest.body).articles;
     const espnStories = JSON.parse(espnRequest.body).articles;
-    const hnStories = JSON.parse(hackerNewsRequest.body).slice(0, 10);
+    const hnStories = JSON.parse(hnRequest.body).slice(0, 10);
 
     const bloomStoriesClean = bloomStories.map(story => {
         return {

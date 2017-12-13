@@ -4,7 +4,7 @@ import Feed from './Feed';
 
 const ArchiveGrid = ({ archives }) => {    
     const feeds = Object.keys(archives).map((media, i) =>
-        <Feed media={media} articles={archives[media]} key={i} />
+        <Feed media={media} articles={archives[media]} key={media} />
     );
     return (
         <div>

@@ -2,16 +2,14 @@ import React from 'react';
 import Modal from 'react-modal';
 import LoginForm from './LoginForm'
 
-const LoginModal = props => {
-    console.log(`props:`,props)
-    const { openModal, afterOpenModal, closeModal, modalIsOpen, login } = props;
+const LoginModal = ({ openCloseModal, afterOpenModal, modalIsOpen, login }) => {
     const submit = values => login(values);
     return (
         <div>
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
+                onRequestClose={openCloseModal}
                 style={customStyles}
                 contentLabel="Example Modal"
             >

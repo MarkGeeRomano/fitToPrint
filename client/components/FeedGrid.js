@@ -4,7 +4,7 @@ import Feed from './Feed';
 
 const FeedGrid = ({ articles, user }) => {    
     const feeds = Object.keys(articles).map((media, i) =>
-        <Feed media={media} articles={articles[media]} key={i} />
+        <Feed media={media} articles={articles[media]} key={media} />
     );
     return (
         <div>            

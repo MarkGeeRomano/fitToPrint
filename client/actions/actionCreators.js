@@ -11,8 +11,9 @@ export function fetchData() {
     };
 };
 
-export function login({userName, password}) {
-    return dispatch => {        
+export function login({ userName, password }) {
+    console.log(`firing login`);
+    return dispatch => {
         fetch(`/login`, {
             method: `POST`,
             headers: {
@@ -30,7 +31,8 @@ export function login({userName, password}) {
                 dispatch({ type: `LOAD_ARTICLES`, load: data.articles });
                 dispatch({ type: `LOAD_USER`, load: data.user });
                 dispatch({ type: `LOAD_ARCHIVES`, load: data.archives });
-            });
+            })
+            .catch(err => console.log(`err:`, err))
     }
 };
 

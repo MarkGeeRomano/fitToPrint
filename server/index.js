@@ -1,5 +1,5 @@
+const express = require(`express`);
 const path = require('path');
-const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
@@ -34,7 +34,7 @@ const addArchive = (req, res, next) => userController.getUser(req, res, next, tr
 app.get('/newsAPI', mediaController.queryNews);
 app.post(`/login`, userController.verifyUser, mediaController.queryNews);
 app.post(`/user`, userController.createUser );
-app.get(`/archive`, addArchive, archiveController.addArchive);
+app.get(`/archived`, addArchive, archiveController.addArchive);
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 

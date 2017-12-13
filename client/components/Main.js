@@ -9,28 +9,23 @@ class Main extends React.Component {
             modalIsOpen: false
         };
 
-        this.openModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        this.openCloseModal = this.openCloseModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);        
     };
 
-    componentWillMount() {
-        this.props.fetchData();
+    componentDidMount() {
+        this.props.fetchData();        
     };
 
-    openModal() {
-        this.setState({ modalIsOpen: true });
+    openCloseModal() {
+        this.setState(prevState => ({ modalIsOpen: !prevState.modalIsOpen }));
     };
 
     afterOpenModal() {
         this.subtitle.style.color = '#f00';
     };
 
-    closeModal() {
-        this.setState({ modalIsOpen: false });
-    };
-
-    render() {        
+    render() {
         const { savedArticles } = this.props.user;
         const { login } = this.props;
         const link = savedArticles ? (<Link to="/archive">Go to archived</Link>) : `You're but a guest`;
@@ -41,11 +36,10 @@ class Main extends React.Component {
                 <h3>
                     {link}
                 </h3>
-                <button onClick={this.openModal}>Open Modal</button>
+                <button onClick={this.openCloseModal}>Open Modal</button>
                 <LoginModal
-                    openModal={this.openModal}
-                    afterOpenModal={this.afterOpenModal}
-                    closeModal={this.closeModal}
+                    openCloseModal={this.openCloseModal}
+                    afterOpenModal={this.afterOpenModal}                    
                     modalIsOpen={this.state.modalIsOpen}
                     login={login}
                 />
