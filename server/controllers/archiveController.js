@@ -3,38 +3,56 @@ const Archive = require(`../models/archiveModel`);
 const archiveController = {};
 
 archiveController.addArchive = async (req, res, next) => {
+    console.log(`trying to add archive`);
     const user = res.locals.user;
+    const { title, name, data } = req.body;
 
-    const mockArticle = {
-        title: `No. 9 Ohio State closes out Michigan without J.T. Barrett`,
-        name: `ESPN`,
-        data: {
-            "img": "http://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2017%2F1125%2Fr294146_1296x729_16%2D9.jpg",
-            "description": "Dwayne Haskins comes off the bench to lead Ohio State past Michigan for the sixth straight year, keeping the Buckeyes' playoff hopes alive.",
-            "time": "2017-11-25T20:50:11Z",
-            "url": "http://espn.go.com/blog/bigten/post/_/id/143438/no-9-ohio-state-closes-out-michigan-without-j-t-barrett",
-            "title": "No. 9 Ohio State closes out Michigan without J.T. Barrett"
-        }
+    let archivedArticle;
+    let archives;
+    try {
+        archivedArticle = await Archive.findOne({ title, name });
+    } catch (e) {
+        return res.json(e)
     };
-
-    let archivedArticle = await Archive.findOne({
-        title: mockArticle.title,
-        name: mockArticle.name
-    });
 
     if (archivedArticle) {
         console.log(`article exists, pushing it.`);
+        archives = user.savedArticles.reduce((allArt, currArt) => {
+            allArt[currArt.name] ? allArt[currArt.name].push(currArt.data) :
+                allArt[currArt.name] = [currArt.data];
+            return allArt;
+        }, {});
         user.savedArticles.push(archivedArticle._id);
     }
     else {
         console.log(`article doesn't exist`);
-        archivedArticle = await Archive.create(mockArticle);
-        console.log(`newly created article:`, archivedArticle);
-        user.savedArticles.push(archivedArticle._id);
+        try {
+            archivedArticle = await Archive.create({ title, name, data });
+            archives = user.savedArticles.reduce((allArt, currArt) => {
+                allArt[currArt.name] ? allArt[currArt.name].push(currArt.data) :
+                    allArt[currArt.name] = [currArt.data];
+                return allArt;
+            }, {});
+            user.savedArticles.push(archivedArticle._id);
+        } catch (e) {
+            return res.json(e);
+        }
     };
 
     await user.save();
-    res.json([user, archivedArticle]);
+
+    const newArticle = {
+        title: archivedArticle.data.title,
+        url: archivedArticle.data.url,
+        description: archivedArticle.data.description,
+        img: archivedArticle.data.img,
+    }
+
+    archives[archivedArticle.name] ?
+        archives[archivedArticle.name].push(newArticle)
+        : archives[archivedArticle.name] = [newArticle];
+ 
+    return res.json({ archives });
 };
 
 module.exports = archiveController;

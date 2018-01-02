@@ -147,9 +147,23 @@ a.nostyle:visited {
     margin: 0 10px;
 }
 
+.box-img-left{        
+    margin: 25px 0 0 50px;
+}
+
+.box-img-right{        
+    margin: 50px 0 0 25px;
+}
+
+.arrow{
+    height:50%;
+    width:50%;
+}
+
 .container{
     display: flex;
     justify-content: center;
+    align-items: center;
     // border:10px solid red;
 }
 
@@ -175,4 +189,9 @@ a.nostyle:visited {
     display:flex;
     justify-content: center;
     flex-direction: column;        
+}
+
+.archive-icon{
+    width:3vw;
+    height:6vh;
 }

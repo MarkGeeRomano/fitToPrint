@@ -4,37 +4,48 @@ const User = require(`../models/userModel`);
 const userController = {};
 
 userController.getUser = async (req, res, next) => {
-    const user = await User.findById(`5a163645f72bda2c50aaadf1`);
-    res.locals.user = user;
-    next();
-}
+    try {
+        const user = await User.findOne({ userName: req.body.user }).populate(`savedArticles`);
+        console.log(`user found:`, user._id)
+        res.locals.user = user;
+        next();
+    }catch(e){
+        console.log(`error finding user:`,e)
+    }
+};
 
 userController.createUser = async (req, res, next) => {
-    const mockUser = {
-        firstName: `Mark`,
-        password: `password`,
-        lastName: `Romano`,
-        userName: `kitters`,
-        zip: `10092`,
-    }
-    const user = await User.create(mockUser);
+    // const mockUser = {
+    //     firstName: `Mark`,
+    //     password: `password`,
+    //     lastName: `Romano`,
+    //     userName: `kitters`,
+    //     zip: `10092`,
+    // }
 
-    res.json(user);
+    try {
+        console.log(`USER`, req.body)
+        const user = await User.create(req.body);
+        res.locals.data = { user };
+        next();
+    } catch (e) {
+        res.json(e)
+    }
 };
 
 userController.verifyUser = async (req, res, next) => {
-    console.log(`req.body`,req.body);
-    const { userName, password } = req.body;
+    
+    const { userName, password } = req.body;    
     console.log(`userName:${userName}`)
     console.log(`password:${password}`)
     try {
-        const user = await User.findOne({ userName }).populate(`savedArticles`);        
+        const user = await User.findOne({ userName }).populate(`savedArticles`);
         user.comparePassword(password, (err, isMatch) => {
             if (isMatch) {
-                res.cookie(`loggedStatus`, `logged`);                
+                res.cookie(`loggedStatus`, `logged`);
                 res.locals.data = { user };
                 next();
-            } else{
+            } else {
                 return console.log(`incorrect pw`);
             }
         });

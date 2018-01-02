@@ -28,13 +28,13 @@ app.use(cookieParser());
 
 app.use(express.static('public'));
 
-const addArchive = (req, res, next) => userController.getUser(req, res, next, true);
+// const addArchive = (req, res, next) => userController.getUser(req, res, next, true);
 
 // app.post(`/test`,(r)=>console.log(`rbody:`,r.body))
 app.get('/newsAPI', mediaController.queryNews);
 app.post(`/login`, userController.verifyUser, mediaController.queryNews);
-app.post(`/user`, userController.createUser );
-app.get(`/archived`, addArchive, archiveController.addArchive);
+app.post(`/createUser`, userController.createUser, mediaController.queryNews);
+app.post(`/addArchive`, userController.getUser,archiveController.addArchive);
 
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
