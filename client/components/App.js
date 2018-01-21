@@ -7,18 +7,21 @@ import { bindActionCreators } from 'redux';
 
 import FeedGrid from './FeedGrid';
 import Sticky from './Sticky';
-import LoginModal from './LoginModal';
-import CreateUserModal from './CreateUserModal';
+import LoginModal from './modals/LoginModal';
+import CreateUserModal from './modals/CreateUserModal';
+import SubsModal from './modals/SubsModal';
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
             userModalIsOpen: false,
-            loginModalIsOpen: false
+            loginModalIsOpen: false,
+            subsModalIsOpen: false
         };
         this.openCloseUserModal = this.openCloseUserModal.bind(this);
         this.openCloseLoginModal = this.openCloseLoginModal.bind(this);
+        this.openCloseSubsModal = this.openCloseSubsModal.bind(this);
     };
 
     openCloseUserModal() {
@@ -27,15 +30,24 @@ class App extends Component {
     openCloseLoginModal() {
         this.setState(prevState => ({ loginModalIsOpen: !prevState.loginModalIsOpen }));
     };
+    openCloseSubsModal() {
+        this.setState(prevState => ({ subsModalIsOpen: !prevState.subsModalIsOpen }));
+    };
 
     componentDidMount() {
         // this.props.fetchData();
-        this.props.login({userName:`kitters`,password:`password`});
+        //default - logged in
+        this.props.login({ userName: `kitters`, password: `password` });
     };
 
     render() {
-        const { login, location, createUser} = this.props;
-        const { savedArticles } = this.props.user;
+        const {
+            login,
+            location,
+            createUser,
+            user: { savedArticles, subscriptions },
+            availScripts
+        } = this.props;
 
         const link = savedArticles ? <Link to="/archive">Go to archived</Link> : null;
         return [
@@ -43,6 +55,7 @@ class App extends Component {
                 link={link}
                 openCloseUserModal={this.openCloseUserModal}
                 openCloseLoginModal={this.openCloseLoginModal}
+                openCloseSubsModal={this.openCloseSubsModal}
                 location={location.pathname}
                 {...this.props}
             />,
@@ -55,6 +68,12 @@ class App extends Component {
                 loginModalIsOpen={this.state.loginModalIsOpen}
                 openCloseLoginModal={this.openCloseLoginModal}
                 login={login}
+            />,
+            <SubsModal
+                subsModalIsOpen={this.state.subsModalIsOpen}
+                openCloseSubsModal={this.openCloseSubsModal}
+                availScripts={availScripts}
+                subscriptions={subscriptions}
             />,
             <Switch>
                 <Route key="home" exact path="/" render={() => <FeedGrid home={true} {...this.props} />} />
@@ -70,7 +89,8 @@ function mapStateToProps(state) {
         articles: state.articles,
         user: state.user,
         archives: state.archives,
-        indices: state.indices
+        indices: state.indices,
+        availScripts: state.availScripts
     };
 };
 

@@ -1,15 +1,15 @@
 import React from 'react';
 import Modal from 'react-modal';
 // import LoginForm from './LoginForm';
-import LoginForm from './LoginForm';
+import LoginForm from '../forms/LoginForm';
 
-const LoginModal = ({ openCloseLoginModal, loginModalIsOpen, login }) => {
-    
+const LoginModal = ({ openCloseLoginModal, loginModalIsOpen, login }) => {    
     const submit = values => {
         login(values);
         openCloseLoginModal();
     };
-    return (
+
+    return [
         <div>
             <Modal
                 isOpen={loginModalIsOpen}
@@ -19,7 +19,7 @@ const LoginModal = ({ openCloseLoginModal, loginModalIsOpen, login }) => {
                 <LoginForm onSubmit={submit} />
             </Modal>
         </div>
-    );
+    ];
 };
 
 const customStyles = {

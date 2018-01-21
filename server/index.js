@@ -44,7 +44,7 @@ const updateArticles = async () => {
     const documents = await mediaController.updateArticles(stories);
 };
 
-cron.schedule('* 1 * * *', updateArticles, false).start();
+cron.schedule('* * 1 * * *', updateArticles, false).start();
 
 const port = process.env.NODE_ENV === 'development' ? 9443 : 8446;
 app.listen(port, () => console.log(`server listening at http://localhost:${port}`));

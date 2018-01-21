@@ -2,8 +2,7 @@ export function fetchData() {
     return dispatch => {
         fetch(`/newsAPI`)
             .then(blob => blob.json())
-            .then(data => {
-                console.log(`data from fetch:`, data);
+            .then(data => {                
                 dispatch({ type: `LOAD_ARTICLES`, load: data.articles });
                 dispatch({ type: `LOAD_USER`, load: data.user });
                 dispatch({ type: `LOAD_ARCHIVES`, load: data.archives });
@@ -12,8 +11,7 @@ export function fetchData() {
     };
 };
 
-export function login({ userName, password }) {
-    console.log(`firing login`);
+export function login({ userName, password }) {    
     return dispatch => {
         fetch(`/login`, {
             method: `POST`,
@@ -21,11 +19,11 @@ export function login({ userName, password }) {
             body: JSON.stringify({ userName, password })
         })
             .then(data => data.json())
-            .then(data => {
-                console.log(`data from fetch:`, data);
+            .then(data => {                
                 dispatch({ type: `LOAD_ARTICLES`, load: data.articles });
                 dispatch({ type: `LOAD_USER`, load: data.user });
                 dispatch({ type: `LOAD_ARCHIVES`, load: data.archives });
+                dispatch({ type: `LOAD_AVAIL_SCRIPTS`, load: data.availScripts });
             })
             .catch(err => console.log(`err:`, err))
     };
@@ -73,6 +71,10 @@ export function addArchive(load) {
             .catch(err => console.log(`err:`, err))
     };
 };
+
+export function modifyScripts(load){
+    console.log(`firing modifyScripts`,load)
+}
 
 
 

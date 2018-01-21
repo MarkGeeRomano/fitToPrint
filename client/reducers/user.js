@@ -4,8 +4,7 @@
 
 function user(state = {}, action){  
     switch(action.type){
-        case `LOAD_USER`:
-            console.log(`Type:LOAD_USER, Load:`,action.load);    
+        case `LOAD_USER`:                
             return action.load;
     }      
     return state;

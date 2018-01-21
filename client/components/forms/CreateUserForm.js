@@ -1,8 +1,7 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
-let CreateUserForm = ({ handleSubmit }) => {
-  return (
+let CreateUserForm = ({ handleSubmit }) => 
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="userName">Username</label>
@@ -29,13 +28,12 @@ let CreateUserForm = ({ handleSubmit }) => {
         <Field name="zip" component="input" type="text" />
       </div>
       <button type="submit">Submit</button>
-    </form>
-  )
-}
+    </form>  
+;
 
 CreateUserForm = reduxForm({
   // a unique name for the form
   form: 'createUser'
-})(CreateUserForm)
+})(CreateUserForm);
 
-export default CreateUserForm
+export default CreateUserForm;

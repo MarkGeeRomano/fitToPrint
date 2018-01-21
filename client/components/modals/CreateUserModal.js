@@ -1,15 +1,15 @@
 import React from 'react';
 import Modal from 'react-modal';
 // import LoginForm from './LoginForm';
-import CreateUserForm from './CreateUserForm';
+import CreateUserForm from '../forms/CreateUserForm';
 
-const CreateUserModal = ({ openCloseUserModal, userModalIsOpen, createUser }) => {
-    
+const CreateUserModal = ({ openCloseUserModal, userModalIsOpen, createUser }) => {    
     const submit = values => {
         createUser(values);
         openCloseUserModal();
     };
-    return (
+
+    return [
         <div>
             <Modal
                 isOpen={userModalIsOpen}
@@ -19,7 +19,7 @@ const CreateUserModal = ({ openCloseUserModal, userModalIsOpen, createUser }) =>
                 <CreateUserForm onSubmit={submit} />
             </Modal>
         </div>
-    );
+    ];
 };
 
 const customStyles = {

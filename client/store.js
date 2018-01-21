@@ -8,7 +8,8 @@ const defaultState = {
     articles:{}, 
     user:{},
     archives: {},
-    indices: {}    
+    indices: {},
+    availScripts: []    
 };
 
 const enhancers = compose(

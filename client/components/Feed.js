@@ -1,7 +1,5 @@
 import React from 'react';
 import Article from './Article';
-//justify content -> main axis -
-//align content -> cross axis |
 
 class Feed extends React.Component {
     constructor() {
